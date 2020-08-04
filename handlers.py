@@ -27,7 +27,7 @@ async def transition(message: Message):
     """
 
 
-@dp.message_handler(CommandStart(), state=Game.start)
+@dp.message_handler(CommandStart())
 async def start(message: Message):
     await message.answer('Привет, это квест! *** текст будет потом ***. Правила просты: приходит загадка, '
                          'в ответ нужно написать место, которое она описывает.')
