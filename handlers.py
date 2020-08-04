@@ -5,7 +5,8 @@ from state import Game
 from load_all import dp
 
 number_stage = 1
-admin_id = 382505606
+# admin_id = 382505606
+admin_id = 428388372
 
 
 @dp.message_handler(user_id=admin_id, commands=["stage"])
@@ -16,8 +17,13 @@ async def count_user(message: Message):
 @dp.message_handler(state=Game.transition)
 async def transition(message: Message):
     global number_stage
-    await message.answer('Поздравляю. Нажми, когда будешь готова', reply_markup=transition_menu)
-    if number_stage == 2:
+    if number_stage == 1:
+        await message.answer('Когда будешь готова, нажми кнопку снизу', reply_markup=transition_menu)
+    else:
+        await message.answer('Поздравляю. Нажми, когда будешь готова', reply_markup=transition_menu)
+    if number_stage == 1:
+        await Game.pre_stage1.set()
+    elif number_stage == 2:
         await Game.pre_stage2.set()
     elif number_stage == 3:
         await Game.pre_stage3.set()
@@ -26,22 +32,21 @@ async def transition(message: Message):
     elif number_stage == 5:
         await Game.pre_stage5.set()
     elif number_stage == 6:
-        await Game.pre_stage5.set()
+        await Game.pre_stage6.set()
     elif number_stage == 7:
-        await Game.pre_stage5.set()
+        await Game.pre_stage7.set()
 
 
 @dp.message_handler(CommandStart())
 async def start(message: Message):
     await message.answer('Привет, это квест! *** текст будет потом ***.\nПравила просты: приходит загадка, '
                          'в ответ нужно написать место, которое она описывает.')
-    await message.answer('Первая загадка:\nМесто, которое подарило тебе нас')
-    await Game.pre_stage1.set()
+    await Game.transition.set()
 
 
 @dp.message_handler(state=Game.pre_stage1)
 async def pre_stage1(message: Message):
-    await message.answer('Место нашей шальной молодости, где мы прятались в кустах и убегали от лишних глаз')
+    await message.answer('Первая загадка:\nМесто, которое подарило тебе нас')
     await Game.stage1.set()
 
 
