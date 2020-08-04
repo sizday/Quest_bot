@@ -52,8 +52,9 @@ async def stage1(message: Message):
     if message.text.lower() != 'школа':
         await message.answer('Ответ не верен')
         await Game.stage1.set()
-    number_stage += 1
-    await Game.transition.set()
+    else:
+        number_stage += 1
+        await Game.transition.set()
 
 
 @dp.message_handler(state=Game.pre_stage2)
@@ -68,8 +69,9 @@ async def stage2(message: Message):
     if message.text.lower() != "мост у труда":
         await message.answer('Ответ не верен')
         await Game.stage2.set()
-    number_stage += 1
-    await Game.transition.set()
+    else:
+        number_stage += 1
+        await Game.transition.set()
 
 
 @dp.message_handler(state=Game.pre_stage3)
@@ -84,8 +86,9 @@ async def stage3(message: Message):
     if message.text.lower() != "памятник Чкалову":
         await message.answer('Ответ не верен')
         await Game.stage3.set()
-    number_stage += 1
-    await Game.transition.set()
+    else:
+        number_stage += 1
+        await Game.transition.set()
 
 
 @dp.message_handler(state=Game.pre_stage4)
@@ -100,8 +103,9 @@ async def stage4(message: Message):
     if message.text.lower() != "папи":
         await message.answer('Ответ не верен')
         await Game.stage4.set()
-    number_stage += 1
-    await Game.transition.set()
+    else:
+        number_stage += 1
+        await Game.transition.set()
 
 
 @dp.message_handler(state=Game.pre_stage5)
@@ -116,8 +120,9 @@ async def stage5(message: Message):
     if message.text.lower() != "режим":
         await message.answer('Ответ не верен')
         await Game.stage5.set()
-    number_stage += 1
-    await Game.transition.set()
+    else:
+        number_stage += 1
+        await Game.transition.set()
 
 
 @dp.message_handler(state=Game.pre_stage6)
@@ -132,8 +137,9 @@ async def stage6(message: Message):
     if message.text.lower() != "пакгаузы":
         await message.answer('Ответ не верен')
         await Game.stage6.set()
-    number_stage += 1
-    await Game.transition.set()
+    else:
+        number_stage += 1
+        await Game.transition.set()
 
 
 @dp.message_handler(state=Game.pre_stage7)
@@ -148,4 +154,5 @@ async def stage7(message: Message):
     if message.text.lower() != "кафе опера":
         await message.answer('Ответ не верен')
         await Game.stage7.set()
-    await Game.end.set()
+    else:
+        await Game.end.set()
