@@ -14,23 +14,6 @@ async def count_user(message: Message):
     await message.answer(f'Аня находится на {number_stage} этапе')
 
 
-@dp.message_handler(state=Game.transition)
-async def transition():
-    global number_stage
-    if number_stage == 2:
-        await Game.pre_stage2.set()
-    elif number_stage == 3:
-        await Game.pre_stage3.set()
-    elif number_stage == 4:
-        await Game.pre_stage4.set()
-    elif number_stage == 5:
-        await Game.pre_stage5.set()
-    elif number_stage == 6:
-        await Game.pre_stage6.set()
-    elif number_stage == 7:
-        await Game.pre_stage7.set()
-
-
 @dp.message_handler(CommandStart())
 async def start(message: Message):
     await message.answer('Привет, это квест! *** текст будет потом ***.\nПравила просты: приходит загадка, '
@@ -54,7 +37,7 @@ async def stage1(message: Message):
     else:
         number_stage += 1
         await message.answer('Поздравляю. Нажми, когда будешь готова продолжить', reply_markup=transition_menu)
-        await Game.transition.set()
+        await Game.pre_stage2.set()
 
 
 @dp.message_handler(state=Game.pre_stage2)
@@ -72,7 +55,7 @@ async def stage2(message: Message):
     else:
         number_stage += 1
         await message.answer('Поздравляю. Нажми, когда будешь готова продолжить', reply_markup=transition_menu)
-        await Game.transition.set()
+        await Game.pre_stage3.set()
 
 
 @dp.message_handler(state=Game.pre_stage3)
@@ -90,7 +73,7 @@ async def stage3(message: Message):
     else:
         number_stage += 1
         await message.answer('Поздравляю. Нажми, когда будешь готова продолжить', reply_markup=transition_menu)
-        await Game.transition.set()
+        await Game.pre_stage4.set()
 
 
 @dp.message_handler(state=Game.pre_stage4)
@@ -108,7 +91,7 @@ async def stage4(message: Message):
     else:
         number_stage += 1
         await message.answer('Поздравляю. Нажми, когда будешь готова продолжить', reply_markup=transition_menu)
-        await Game.transition.set()
+        await Game.pre_stage5.set()
 
 
 @dp.message_handler(state=Game.pre_stage5)
@@ -126,7 +109,7 @@ async def stage5(message: Message):
     else:
         number_stage += 1
         await message.answer('Поздравляю. Нажми, когда будешь готова продолжить', reply_markup=transition_menu)
-        await Game.transition.set()
+        await Game.pre_stage6.set()
 
 
 @dp.message_handler(state=Game.pre_stage6)
@@ -144,7 +127,7 @@ async def stage6(message: Message):
     else:
         number_stage += 1
         await message.answer('Поздравляю. Нажми, когда будешь готова продолжить', reply_markup=transition_menu)
-        await Game.transition.set()
+        await Game.pre_stage7.set()
 
 
 @dp.message_handler(state=Game.pre_stage7)
