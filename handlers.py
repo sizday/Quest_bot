@@ -37,25 +37,19 @@ async def start(message: Message):
 @dp.message_handler(state=Game.stage1)
 async def stage1(message: Message):
     global number_stage
-    while True:
-        if message.text.lower() == 'школа':
-            number_stage += 1
-            await Game.transition.set()
-            break
-        else:
-            await message.answer('Ответ не верен')
+    while message.text.lower() != 'школа':
+        await message.answer('Ответ не верен')
+        await Game.stage1.set()
+    number_stage += 1
+    await Game.transition.set()
 
 
 @dp.message_handler(state=Game.stage2)
 async def stage2(message: Message):
     await message.answer('Место нашей шальной молодости, где мы прятались в кустах и убегали от лишних глаз')
     global number_stage
-    while True:
-        if message.text.lower() == 'школа':
-            number_stage += 1
-            await Game.transition.set()
-            break
-        else:
-            await message.answer('Ответ не верен')
-
-
+    while message.text.lower() != "мост у труда":
+        await message.answer('Ответ не верен')
+        await Game.stage2.set()
+    number_stage += 1
+    await Game.transition.set()
