@@ -5,8 +5,7 @@ from state import Game
 from load_all import dp
 
 number_stage = 1
-# admin_id = 382505606
-admin_id = 428388372
+admin_id = 382505606
 
 
 @dp.message_handler(user_id=admin_id, commands=["stage"])
