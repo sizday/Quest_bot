@@ -67,7 +67,7 @@ async def pre_stage3(message: Message):
 @dp.message_handler(state=Game.stage3)
 async def stage3(message: Message):
     global number_stage
-    if message.text.lower() != "памятник Чкалову":
+    if message.text.lower() != "памятник чкалову":
         await message.answer('Ответ не верен')
         await Game.stage3.set()
     else:
