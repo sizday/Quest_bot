@@ -17,13 +17,8 @@ async def count_user(message: Message):
 @dp.message_handler(state=Game.transition)
 async def transition(message: Message):
     global number_stage
-    if number_stage == 1:
-        await message.answer('Когда будешь готова, нажми кнопку снизу', reply_markup=transition_menu)
-    else:
-        await message.answer('Поздравляю. Нажми, когда будешь готова', reply_markup=transition_menu)
-    if number_stage == 1:
-        await Game.pre_stage1.set()
-    elif number_stage == 2:
+    await message.answer('Поздравляю. Нажми, когда будешь готова', reply_markup=transition_menu)
+    if number_stage == 2:
         await Game.pre_stage2.set()
     elif number_stage == 3:
         await Game.pre_stage3.set()
@@ -41,7 +36,8 @@ async def transition(message: Message):
 async def start(message: Message):
     await message.answer('Привет, это квест! *** текст будет потом ***.\nПравила просты: приходит загадка, '
                          'в ответ нужно написать место, которое она описывает.')
-    await Game.transition.set()
+    await message.answer('Когда будешь готова, нажми кнопку снизу', reply_markup=transition_menu)
+    await Game.pre_stage1.set()
 
 
 @dp.message_handler(state=Game.pre_stage1)
