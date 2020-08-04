@@ -15,7 +15,7 @@ async def count_user(message: Message):
 
 
 @dp.message_handler(state=Game.transition)
-async def transition(message: Message):
+async def transition():
     global number_stage
     if number_stage == 2:
         await Game.pre_stage2.set()
