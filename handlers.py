@@ -10,10 +10,9 @@ number_stage = 1
 @dp.message_handler(state=Game.transition)
 async def transition(message: Message):
     global number_stage
-    await message.answer('Нажми, когда будешь готова', reply_markup=transition_menu)
+    await message.answer('Поздравляю. Нажми, когда будешь готова', reply_markup=transition_menu)
     if number_stage == 2:
-        await message.answer('Место нашей шальной молодости, где мы прятались в кустах и убегали от лишних глаз')
-        await Game.stage2
+        await Game.stage2.set()
     """
     elif number_stage == 3:
         await message.answer('Нажми, когда будешь готова')
@@ -29,9 +28,9 @@ async def transition(message: Message):
 
 @dp.message_handler(CommandStart())
 async def start(message: Message):
-    await message.answer('Привет, это квест! *** текст будет потом ***. Правила просты: приходит загадка, '
+    await message.answer('Привет, это квест! *** текст будет потом ***.\nПравила просты: приходит загадка, '
                          'в ответ нужно написать место, которое она описывает.')
-    await message.answer('\bПервая загадка\b\nМесто, которое подарило тебе нас')
+    await message.answer('Первая загадка:\nМесто, которое подарило тебе нас')
     await Game.stage1.set()
 
 
@@ -40,23 +39,23 @@ async def stage1(message: Message):
     global number_stage
     while True:
         if message.text.lower() == 'школа':
-            await message.answer('Поздравляю')
             number_stage += 1
+            await Game.transition.set()
             break
         else:
             await message.answer('Ответ не верен')
-    await Game.transition.set()
 
 
 @dp.message_handler(state=Game.stage2)
 async def stage2(message: Message):
+    await message.answer('Место нашей шальной молодости, где мы прятались в кустах и убегали от лишних глаз')
     global number_stage
     while True:
         if message.text.lower() == 'школа':
-            await message.answer('Поздравляю')
             number_stage += 1
+            await Game.transition.set()
             break
         else:
             await message.answer('Ответ не верен')
-    await Game.transition.set()
+
 
