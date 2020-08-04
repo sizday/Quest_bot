@@ -17,7 +17,6 @@ async def count_user(message: Message):
 @dp.message_handler(state=Game.transition)
 async def transition(message: Message):
     global number_stage
-    await message.answer('Поздравляю. Нажми, когда будешь готова', reply_markup=transition_menu)
     if number_stage == 2:
         await Game.pre_stage2.set()
     elif number_stage == 3:
@@ -54,6 +53,7 @@ async def stage1(message: Message):
         await Game.stage1.set()
     else:
         number_stage += 1
+        await message.answer('Поздравляю. Нажми, когда будешь готова', reply_markup=transition_menu)
         await Game.transition.set()
 
 
@@ -71,6 +71,7 @@ async def stage2(message: Message):
         await Game.stage2.set()
     else:
         number_stage += 1
+        await message.answer('Поздравляю. Нажми, когда будешь готова', reply_markup=transition_menu)
         await Game.transition.set()
 
 
@@ -88,6 +89,7 @@ async def stage3(message: Message):
         await Game.stage3.set()
     else:
         number_stage += 1
+        await message.answer('Поздравляю. Нажми, когда будешь готова', reply_markup=transition_menu)
         await Game.transition.set()
 
 
@@ -105,6 +107,7 @@ async def stage4(message: Message):
         await Game.stage4.set()
     else:
         number_stage += 1
+        await message.answer('Поздравляю. Нажми, когда будешь готова', reply_markup=transition_menu)
         await Game.transition.set()
 
 
@@ -122,6 +125,7 @@ async def stage5(message: Message):
         await Game.stage5.set()
     else:
         number_stage += 1
+        await message.answer('Поздравляю. Нажми, когда будешь готова', reply_markup=transition_menu)
         await Game.transition.set()
 
 
@@ -139,6 +143,7 @@ async def stage6(message: Message):
         await Game.stage6.set()
     else:
         number_stage += 1
+        await message.answer('Поздравляю. Нажми, когда будешь готова', reply_markup=transition_menu)
         await Game.transition.set()
 
 
@@ -155,4 +160,5 @@ async def stage7(message: Message):
         await message.answer('Ответ не верен')
         await Game.stage7.set()
     else:
+        await message.answer('Поздравляю. Нажми, когда будешь готова', reply_markup=transition_menu)
         await Game.end.set()
