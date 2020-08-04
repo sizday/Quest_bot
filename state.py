@@ -3,6 +3,7 @@ from aiogram.dispatcher.filters.state import StatesGroup, State
 
 class Game(StatesGroup):
     transition = State()
+    pre_stage1 = State()
     stage1 = State()
     pre_stage2 = State()
     stage2 = State()

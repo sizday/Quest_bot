@@ -30,6 +30,12 @@ async def start(message: Message):
     await message.answer('Привет, это квест! *** текст будет потом ***.\nПравила просты: приходит загадка, '
                          'в ответ нужно написать место, которое она описывает.')
     await message.answer('Первая загадка:\nМесто, которое подарило тебе нас')
+    await Game.pre_stage1.set()
+
+
+@dp.message_handler(state=Game.pre_stage1)
+async def pre_stage1(message: Message):
+    await message.answer('Место нашей шальной молодости, где мы прятались в кустах и убегали от лишних глаз')
     await Game.stage1.set()
 
 
