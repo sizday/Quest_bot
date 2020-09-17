@@ -17,6 +17,8 @@ async def count_user(message: Message):
 
 @dp.message_handler(CommandStart())
 async def start(message: Message):
+    global number_stage
+    number_stage = 1
     await message.answer('Привет, Анют! Мы, твои подруги, знаем, что ты очень любишь сюрпризы, загадки и головоломки. '
                          'Поэтому мы придумали для тебя мини-квест, который тебе предстоит пройти на большом белом '
                          'лимузине! Кстати, он уже ждет тебя. Спускайся вниз!  Для того, чтобы собрать нас всех вместе,'
