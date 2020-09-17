@@ -15,8 +15,11 @@ async def count_user(message: Message):
 
 @dp.message_handler(CommandStart())
 async def start(message: Message):
-    await message.answer('Привет, это квест! *** текст будет потом ***.\nПравила просты: приходит загадка, '
-                         'в ответ нужно написать место, которое она описывает.')
+    await message.answer('Привет, Анют! Мы, твои подруги, знаем, что ты очень любишь сюрпризы, загадки и головоломки. '
+                         'Поэтому мы придумали для тебя мини-квест, который тебе предстоит пройти на большом белом '
+                         'лимузине! Кстати, он уже ждет тебя. Спускайся вниз!  Для того, чтобы собрать нас всех вместе,'
+                         ' тебе нужно будет хорошо подумать и вспомнить самые яркие моменты жизни в городе двух N. '
+                         'Чтобы узнать , в какое место тебе нужно будет ехать, ты должна разгадать загадку. ')
     await message.answer('Когда будешь готова, нажми кнопку снизу', reply_markup=transition_menu)
     await Game.pre_stage1.set()
 
@@ -30,117 +33,86 @@ async def pre_stage1(message: Message):
 @dp.message_handler(state=Game.stage1)
 async def stage1(message: Message):
     global number_stage
-    if message.text.lower() != 'школа':
+    if message.text.lower() != 'школа' and message.text.lower() != 'лицей':
         await message.answer('Ответ не верен')
         await Game.stage1.set()
     else:
         number_stage += 1
-        await message.answer('Поздравляю. Нажми, когда будешь готова продолжить', reply_markup=transition_menu)
+        await message.answer('Молодец! Отправляйся по адресу ул. красных зорь 14а, к магазину Пятерочка.'
+                             'Нажми, когда будешь на месте', reply_markup=transition_menu)
         await Game.pre_stage2.set()
 
 
 @dp.message_handler(state=Game.pre_stage2)
 async def pre_stage2(message: Message):
-    await message.answer('Место нашей шальной молодости, где мы прятались в кустах и убегали от лишних глаз')
+    await message.answer('Вторая загадка: место, где твоя попка привлекла взгляды мужчин')
     await Game.stage2.set()
 
 
 @dp.message_handler(state=Game.stage2)
 async def stage2(message: Message):
     global number_stage
-    if message.text.lower() != "мост у труда":
+    if message.text.lower() != "режим" and message.text.lower() != "спортклуб режим":
         await message.answer('Ответ не верен')
         await Game.stage2.set()
     else:
         number_stage += 1
-        await message.answer('Поздравляю. Нажми, когда будешь готова продолжить', reply_markup=transition_menu)
+        await message.answer('Отлично! Адрес места назначения проспект Героев 72А, парковка у Евроспара '
+                             'Нажми, когда будешь на месте', reply_markup=transition_menu)
         await Game.pre_stage3.set()
 
 
 @dp.message_handler(state=Game.pre_stage3)
 async def pre_stage3(message: Message):
-    await message.answer('Место, в котором люди влюбляются в наш город двух N')
+    await message.answer('Третья загадка: место нашей шальной молодости, где мы прятались в кустах и убегали от '
+                         'лишних глаз')
     await Game.stage3.set()
 
 
 @dp.message_handler(state=Game.stage3)
 async def stage3(message: Message):
     global number_stage
-    if message.text.lower() != "памятник чкалову":
+    if message.text.lower() != 'сормовский парк' and message.text.lower() != 'стадион труд':
         await message.answer('Ответ не верен')
         await Game.stage3.set()
     else:
         number_stage += 1
-        await message.answer('Поздравляю. Нажми, когда будешь готова продолжить', reply_markup=transition_menu)
+        await message.answer('Молодец! Отправляйся за следующей подружкой на  Бульвар Юбилейный, 30, стадион «Труд.'
+                             'Нажми, когда будешь на месте', reply_markup=transition_menu)
         await Game.pre_stage4.set()
 
 
 @dp.message_handler(state=Game.pre_stage4)
 async def pre_stage4(message: Message):
-    await message.answer('Un pezzo di Italia a Nižnij Novgorod')
+    await message.answer('Четвертая загадка: Un pezzo di Italia a Nižnij Novgorod')
     await Game.stage4.set()
 
 
 @dp.message_handler(state=Game.stage4)
 async def stage4(message: Message):
     global number_stage
-    if message.text.lower() != "папи":
+    if message.text.lower() not in ['papi', 'ресторан papi', 'кафе papi']:
         await message.answer('Ответ не верен')
         await Game.stage4.set()
     else:
         number_stage += 1
-        await message.answer('Поздравляю. Нажми, когда будешь готова продолжить', reply_markup=transition_menu)
+        await message.answer('Perfettamente! Езжай по адресу ул. Рождественская, 37'
+                             'Нажми, когда будешь на месте', reply_markup=transition_menu)
         await Game.pre_stage5.set()
 
 
 @dp.message_handler(state=Game.pre_stage5)
 async def pre_stage5(message: Message):
-    await message.answer('Место, где твоя попка привлекала взгляды мужчин')
+    await message.answer('Пятая загадка: место, которое вывело твою жизнь на новый этап')
     await Game.stage5.set()
 
 
 @dp.message_handler(state=Game.stage5)
 async def stage5(message: Message):
     global number_stage
-    if message.text.lower() != "режим":
+    if message.text.lower() != "пакгаузы":
         await message.answer('Ответ не верен')
         await Game.stage5.set()
     else:
         number_stage += 1
-        await message.answer('Поздравляю. Нажми, когда будешь готова продолжить', reply_markup=transition_menu)
-        await Game.pre_stage6.set()
-
-
-@dp.message_handler(state=Game.pre_stage6)
-async def pre_stage6(message: Message):
-    await message.answer('Место, которое вывело твою жизнь на новый этап')
-    await Game.stage6.set()
-
-
-@dp.message_handler(state=Game.stage6)
-async def stage6(message: Message):
-    global number_stage
-    if message.text.lower() != "пакгаузы":
-        await message.answer('Ответ не верен')
-        await Game.stage6.set()
-    else:
-        number_stage += 1
-        await message.answer('Поздравляю. Нажми, когда будешь готова продолжить', reply_markup=transition_menu)
-        await Game.pre_stage7.set()
-
-
-@dp.message_handler(state=Game.pre_stage7)
-async def pre_stage7(message: Message):
-    await message.answer('Финальная точка, где тебя ждет сюрприз. Завяжи глаза 👀')
-    await Game.stage7.set()
-
-
-@dp.message_handler(state=Game.stage7)
-async def stage7(message: Message):
-    global number_stage
-    if message.text.lower() != "кафе опера":
-        await message.answer('Ответ не верен')
-        await Game.stage7.set()
-    else:
-        await message.answer('Поздравляю. Нажми, когда будешь готова продолжить', reply_markup=transition_menu)
-        await Game.end.set()
+        await message.answer('Поздравляем! Осталась последняя локация! Езжайте на мыс Стрелка')

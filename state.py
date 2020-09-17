@@ -12,8 +12,4 @@ class Game(StatesGroup):
     stage4 = State()
     pre_stage5 = State()
     stage5 = State()
-    pre_stage6 = State()
-    stage6 = State()
-    pre_stage7 = State()
-    stage7 = State()
-    end = State()
+
