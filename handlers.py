@@ -41,7 +41,7 @@ async def stage1(message: Message):
         await Game.stage1.set()
     else:
         number_stage += 1
-        await message.answer_sticker(positive_sticker.get(number_stage))
+        await message.answer_sticker(positive_sticker.get(2))
         await message.answer('Молодец! Отправляйся по адресу ул. красных зорь 14а, к магазину Пятерочка.\n'
                              'Нажми, когда будешь на месте.', reply_markup=transition_menu)
         await Game.pre_stage2.set()
@@ -62,7 +62,7 @@ async def stage2(message: Message):
         await Game.stage2.set()
     else:
         number_stage += 1
-        await message.answer_sticker(positive_sticker.get(number_stage))
+        await message.answer_sticker(positive_sticker.get(3))
         await message.answer('Отлично! Адрес места назначения проспект Героев 72А, парковка у Евроспара.\n'
                              'Нажми, когда будешь на месте', reply_markup=transition_menu)
         await Game.pre_stage3.set()
@@ -84,7 +84,7 @@ async def stage3(message: Message):
         await Game.stage3.set()
     else:
         number_stage += 1
-        await message.answer_sticker(positive_sticker.get(number_stage))
+        await message.answer_sticker(positive_sticker.get(4))
         await message.answer('Молодец! Отправляйся за следующей подружкой на  Бульвар Юбилейный, 30, стадион «Труд.\n'
                              'Нажми, когда будешь на месте', reply_markup=transition_menu)
         await Game.pre_stage4.set()
@@ -105,7 +105,7 @@ async def stage4(message: Message):
         await Game.stage4.set()
     else:
         number_stage += 1
-        await message.answer_sticker(positive_sticker.get(number_stage))
+        await message.answer_sticker(positive_sticker.get(5))
         await message.answer('Perfettamente! Езжай по адресу ул. Рождественская, 37\n'
                              'Нажми, когда будешь на месте', reply_markup=transition_menu)
         await Game.pre_stage5.set()
@@ -126,5 +126,5 @@ async def stage5(message: Message):
         await Game.stage5.set()
     else:
         number_stage += 1
-        await message.answer_sticker(positive_sticker.get(number_stage))
+        await message.answer_sticker(positive_sticker.get(6))
         await message.answer('Поздравляем! Осталась последняя локация! Езжай на мыс Стрелка!')
