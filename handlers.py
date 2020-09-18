@@ -44,7 +44,7 @@ async def stage1(message: Message):
     else:
         number_stage += 1
         await message.answer_sticker(positive_sticker.get(2))
-        await message.answer('Молодец! Отправляйся по адресу ул. красных зорь 14а, к магазину Пятерочка.\n'
+        await message.answer('Молодец! Отправляйся по адресу ул. Красных Зорь 14а, к магазину Пятерочка.\n'
                              'Нажми, когда будешь на месте.', reply_markup=transition_menu)
         await Game.pre_stage2.set()
 
@@ -87,7 +87,7 @@ async def stage3(message: Message):
     else:
         number_stage += 1
         await message.answer_sticker(positive_sticker.get(4))
-        await message.answer('Молодец! Отправляйся за следующей подружкой на  Бульвар Юбилейный, 30, стадион «Труд.\n'
+        await message.answer('Молодец! Отправляйся за следующей подружкой на Бульвар Юбилейный, 30, стадион «Труд».\n'
                              'Нажми, когда будешь на месте', reply_markup=transition_menu)
         await Game.pre_stage4.set()
 
